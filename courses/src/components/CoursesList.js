@@ -24,27 +24,29 @@ class CoursesList extends Component {
     }
 
     createCourse = async (course, index) => {
-       try {
-           const res = await fetch(/course, {
-           method: "post",
-           headers: {
-             "Accept": "application/json, text/plain, /",
-             "Content-type": "application/json"
-           },
-           body: JSON.stringify({
-               name: course.name,
-               code: course.code
-             })
-           })
-           const jsonRes = await res.json()
-           const updatedCoursesList = [...this.state.courses, jsonRes]
-           //updatedCoursesList.push(newCourseResponse.data)
-           this.setState({courses: updatedCoursesList})
-       } catch(error) {
-           console.log('Error creating new Course!')
-           console.log(error)
-       }
-   }
+        try {
+            const res = await fetch(`/course`, {
+            method: "post",
+            headers: {
+              "Accept": "application/json, text/plain, */*",
+              "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                name: course.name,
+                code: course.code
+              })
+            })
+            const jsonRes = await res.json()
+            const updatedCoursesList = [...this.state.courses, jsonRes]
+            //updatedCoursesList.push(newCourseResponse.data)
+            this.setState({courses: updatedCoursesList})
+
+        } catch(error) {
+            console.log('Error creating new Course!')
+            console.log(error)
+        }
+    }
+
 
     render() {
         return (
